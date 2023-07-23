@@ -1,71 +1,25 @@
 //////////////////////////////////
-// 001. Настройка Ubuntu Server //
+// Настройка Ubuntu Server //
 //////////////////////////////////
 
-1. "Установить UbuntuServer" 
-----------------------------------------------------------------
-2. "При установке разметить диски"
-/dev/sda
-  2G ext4 /boot
-
-/dev/sdb
-  root-vg (lvm)
-    ext4 / root-lv (lvm)
-
-----------------------------------------------------------------
-3. "После установки извлечь установочный диск и перезагрузить"
-
-----------------------------------------------------------------
-4. "Обновить и очистить пакеты"
+1. "Обновить и очистить пакеты"
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
 
 ----------------------------------------------------------------
-5. "Настроить hostname"
+2. "Настроить hostname"
 sudo vim /etc/hostname
-    cloud
+  cloud
 sudo vim /etc/hosts
     127.0.1.1 cloud
 
 ----------------------------------------------------------------
-6. "Настроить timezone"
+3. "Настроить timezone"
 sudo timedatectl set-timezone Europe/Moscow
 
 ----------------------------------------------------------------
-7. "# make sure that “network: {config: disabled}” entry is there. If the entry is missing, we have to create it."
-sudo cat /etc/cloud/cloud.cfg.d/subiquity-disable-cloudinit-networking.cfg
-    network: {config: disabled}
-
-----------------------------------------------------------------
-8. "Настроить сетевые интерфейсы"
-sudo cat /etc/netplan/00-installer-config.yaml
-sudo cp -a /etc/netplan/00-installer-config.yaml{,.orig}  # back up the file /etc/netplan/00-installer-config.yaml
-ip a
-sudo vim /etc/netplan/00-installer-config.yaml
-
-network:
-  version: 2
-  renderer: networkd
-  ethernets:
-    ens18:
-      addresses:
-        - 192.168.1.11/24
-      nameservers:
-        addresses: [192.168.1.1, 8.8.8.8]
-    ens19:
-      addresses:
-        - 8.8.4.4/29
-      nameservers:
-        addresses: [8.8.8.8, 1.1.1.1]
-      routes:
-        - to: default
-          via: 8.8.8.1
-
-sudo netplan try 
-
-----------------------------------------------------------------
-9. "Добавить пользователя"
+4. "Добавить пользователя"
 adduser vol
 usermod -aG sudo vol
 
