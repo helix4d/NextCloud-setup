@@ -92,7 +92,7 @@ ssh vol@volgraft.ru mkdir -p .ssh
 # скопировать публичный ключ на удаленный сервер
 # scp .\[key.pub] [remote_username]@[server_ip_address]:/home/vol/.ssh/[key.pub]
 scp C:\Users\admin\.ssh\key.pub vol@volgraft.ru:/home/vol/.ssh/key.pub
-
+ssh-copy-id user@5.159.102.80
 # подключится к удаленному серверу по ssh
 
 # экспорт публичного ключа в uthorized_keys
