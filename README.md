@@ -4,9 +4,7 @@
 //////////////////////////////////
 
 1. "Обновить и очистить пакеты"
-sudo apt update
-sudo apt upgrade
-sudo apt autoremove
+sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 ----------------------------------------------------------------
 2. "Настроить hostname"
