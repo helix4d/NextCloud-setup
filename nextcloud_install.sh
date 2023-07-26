@@ -72,6 +72,13 @@ Start-Service ssh-agent
 # ssh-add <path to new private key file>
 ssh-add c:/Users/admin/.ssh/key
 
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon --show
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo sysctl vm.vfs_cache_pressure=50
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 002. Установка и настройка NextCloud (установка сервера, базы данных; монтирование директории data) //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
